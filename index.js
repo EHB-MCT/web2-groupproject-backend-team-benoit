@@ -40,7 +40,7 @@ app.get('/challenges', async (req, res, next) => {
     }
 })
 
-app.post('/challenges', async (req, res) => {
+app.post('/challenges', async (req, res, next) => {
     console.log(req.body);
     if (!req.body.name || !req.body.points || !req.body.course) {
         res.status(400).send('Bad request: name, points, course missing')
@@ -59,7 +59,7 @@ app.post('/challenges', async (req, res) => {
     }
 });
 
-app.put("/challenges/:id", async (req, res) => {
+app.put("/challenges/:id", async (req, res, next) => {
     let {
         id
     } = req.params;
@@ -81,7 +81,7 @@ app.put("/challenges/:id", async (req, res) => {
 
 })
 
-app.delete("/challenges/:id", async (req, res) => {
+app.delete("/challenges/:id", async (req, res, next) => {
     const {
         id
     } = req.params;
