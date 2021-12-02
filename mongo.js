@@ -33,8 +33,10 @@ async function addChallenge(challenge) {
 
 async function updateChallenge(id, challenge) {
   const result = await collection.updateOne({
-    _id: id
-  }, challenge);
+    "_id": id
+  }, {
+    $set: challenge
+  });
   console.log('Updated challenge =>', result);
   return result;
 }
