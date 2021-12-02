@@ -1,10 +1,9 @@
 'use strict';
 
-const {
-  MongoClient
-} = require('mongodb');
-const uri = "mongodb+srv://team-benoit:02122021ilyesbenoitfinn@cluster0.j2k5j.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, {
+import * as mdb from 'mongodb';
+
+const uri = "mongodb+srv://team-benoit:eRROYHQ1vIW0rJNV@cluster0.j2k5j.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new mdb.MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
