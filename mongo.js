@@ -8,7 +8,8 @@ const client = new mdb.MongoClient(uri, {
   useUnifiedTopology: true
 });
 
-const collection = client.db('Session7').collection('challenges');
+const challengesCollection = client.db('Session7').collection('challenges');
+const usersCollection = client.db('Session7').collection('challenges');
 
 async function connectToDatabase() {
   await client.connect();
@@ -20,19 +21,19 @@ function closeDatabaseConnection() {
 }
 
 async function getChallenges() {
-  const challenges = await collection.find({}).toArray();
+  const challenges = await challengesCollection.find({}).toArray();
   console.log('Challenges =>', challenges);
   return challenges;
 }
 
 async function addChallenge(challenge) {
-  const result = await collection.insertOne(challenge);
+  const result = await challengesCollection.insertOne(challenge);
   console.log('Added challenge =>', challenge);
   return result;
 }
 
 async function updateChallenge(id, challenge) {
-  const result = await collection.updateOne({
+  const result = await challengesCollection.updateOne({
     _id: mdb.ObjectId(id)
   }, {
     $set: challenge
@@ -42,11 +43,36 @@ async function updateChallenge(id, challenge) {
 }
 
 async function deleteChallenge(id) {
-  const result = await collection.deleteOne({
+  const result = await challengesCollection.deleteOne({
     _id: mdb.ObjectId(id)
   });
   console.log('Deleted challenge =>', result);
   return result;
+}
+
+async function setChallenge(userId, challengeId, state) {
+  const updatedChallenges = await getUserChallenges(userId);
+  if (!state) {
+    updatedChallenges.splice(updatedChallenges.indexOf(challengeId), 1);
+  } else {
+    updatedChallenges.push(challengeId);
+  }
+  const result = await usersCollection.updateOne({
+    _id: mdb.ObjectId(userId)
+  }, {
+    $set: {
+      challenges: updatedChallenges
+    }
+  });
+  console.log('Updated user challenges =>', result);
+  return result;
+}
+
+async function getUserChallenges(userId) {
+  const user = await usersCollection.find({
+    _id: userId
+  }).toArray();
+  return user.challenges;
 }
 
 export {
