@@ -7,21 +7,28 @@ const port = process.env.PORT || 3000;
 
 import * as bodyParser from 'body-parser';
 import * as nodemon from 'nodemon';
-import cors from cors;
+import cors from 'cors';
 
 import {
     cp
 } from 'fs';
 
+app.use(cors());
 app.use(express.static('public'));
 app.use(express.json());
-app.use(cors());
+
+// const allowedOrigins = ['http://127.0.0.1:5500'];
+// const options: cors.CorsOptions = {
+//     origin: allowedOrigins
+// };
+
+
 
 app.get('/', (req, res) => {
     res.status(300).redirect('/info.html');
 })
 
-app.get('/challenges', async (req, res) => {
+app.get('/challenges', async (req, res, next) => {
     try {
         await mongo.connectToDatabase();
         let challenges = await mongo.getChallenges();
