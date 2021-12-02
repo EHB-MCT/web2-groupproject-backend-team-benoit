@@ -33,7 +33,7 @@ async function addChallenge(challenge) {
 
 async function updateChallenge(id, challenge) {
   const result = await collection.updateOne({
-    "_id": id
+    _id: mdb.ObjectId(id)
   }, {
     $set: challenge
   });
