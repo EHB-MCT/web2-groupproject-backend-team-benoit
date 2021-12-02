@@ -1,7 +1,6 @@
 'use strict';
 
 import * as mdb from 'mongodb';
-import dotenv from 'dotenv';
 
 const uri = process.env.MONGO_URI;
 const client = new mdb.MongoClient(uri, {

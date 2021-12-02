@@ -7,12 +7,15 @@ const port = process.env.PORT || 3000;
 
 import * as bodyParser from 'body-parser';
 import * as nodemon from 'nodemon';
+import cors from cors;
+
 import {
     cp
 } from 'fs';
 
 app.use(express.static('public'));
 app.use(express.json());
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.status(300).redirect('/info.html');
