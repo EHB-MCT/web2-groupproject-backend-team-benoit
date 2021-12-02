@@ -43,7 +43,7 @@ async function updateChallenge(id, challenge) {
 
 async function deleteChallenge(id) {
   const result = await collection.deleteOne({
-    _id: id
+    _id: mdb.ObjectId(id)
   });
   console.log('Deleted challenge =>', result);
   return result;
