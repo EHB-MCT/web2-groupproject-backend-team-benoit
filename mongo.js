@@ -1,8 +1,9 @@
 'use strict';
 
 import * as mdb from 'mongodb';
+import dotenv from 'dotenv';
 
-const uri = "mongodb+srv://team-benoit:eRROYHQ1vIW0rJNV@cluster0.j2k5j.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = process.env.MONGO_URI;
 const client = new mdb.MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true

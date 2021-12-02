@@ -1,4 +1,5 @@
 import * as mongo from './mongo.js';
+import dotenv from 'dotenv';
 
 import express from 'express';
 const app = express();
