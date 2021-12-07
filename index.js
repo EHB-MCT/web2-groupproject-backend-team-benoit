@@ -97,6 +97,13 @@ app.delete("/challenges/:id", async (req, res, next) => {
 
 })
 
+app.post('/setChallenge', async(req,res,next) => {
+    if(!req.body.userId || !req.body.challengeId || !req.body.state){
+        res.status(400).send('Bad request: userId, challengeId or status missing')
+        return;
+    }
+})
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
