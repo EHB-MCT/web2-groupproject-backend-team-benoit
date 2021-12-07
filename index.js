@@ -95,7 +95,7 @@ app.delete("/challenges/:id", async (req, res, next) => {
 
 app.post('/setChallenge', async (req, res, next) => {
     if (!req.body.userId || !req.body.challengeId || !req.body.state) {
-        res.status(400).send('Bad request: userId, challengeId or status missing')
+        res.status(400).send('Bad request: userId, challengeId or state missing')
         return;
     }
 
