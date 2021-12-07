@@ -99,6 +99,16 @@ app.post('/setChallenge', async (req, res, next) => {
         return;
     }
 
+    try{
+        await mongo.connectToDatabase();
+        await mongo.setChallenge(req.body.userId, req.body.challengeId, req.body.state)
+        res.status(200).send("Challenge status updated")
+    } catch(error){
+        console.log(error)
+    } finally{
+        mongo.closeDatabaseConnection();
+    }
+
 
 })
 
