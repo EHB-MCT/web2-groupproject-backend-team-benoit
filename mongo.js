@@ -77,7 +77,7 @@ async function getUsers() {
 
 async function getUserChallenges(userId) {
   const user = await usersCollection.find({
-    _id: userId
+    _id: mdb.ObjectId(userId)
   }).toArray();
   console.log(user);
   console.log(user.challenges)
