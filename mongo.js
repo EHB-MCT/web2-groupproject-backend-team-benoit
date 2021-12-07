@@ -9,7 +9,7 @@ const client = new mdb.MongoClient(uri, {
 });
 
 const challengesCollection = client.db('Session7').collection('challenges');
-const usersCollection = client.db('Session7').collection('challenges');
+const usersCollection = client.db('Session7').collection('users');
 
 async function connectToDatabase() {
   await client.connect();
@@ -80,6 +80,7 @@ async function getUserChallenges(userId) {
   }).toArray();
   return user.challenges;
 }
+
 
 export {
   connectToDatabase,
