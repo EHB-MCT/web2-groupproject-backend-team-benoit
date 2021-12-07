@@ -17,12 +17,6 @@ app.use(cors());
 app.use(express.static('public'));
 app.use(express.json());
 
-// const allowedOrigins = ['http://127.0.0.1:5500'];
-// const options: cors.CorsOptions = {
-//     origin: allowedOrigins
-// };
-
-
 
 app.get('/', (req, res) => {
     res.status(300).redirect('/info.html');
@@ -63,6 +57,7 @@ app.put("/challenges/:id", async (req, res, next) => {
     let {
         id
     } = req.params;
+
     if (!req.body.name || !req.body.points || !req.body.course) {
         res.status(400).send('Bad request: name, points or course missing')
         return;
@@ -102,6 +97,8 @@ app.post('/setChallenge', async (req, res, next) => {
         res.status(400).send('Bad request: userId, challengeId or status missing')
         return;
     }
+
+
 })
 
 app.get('/users', async (req, res, next) => {
