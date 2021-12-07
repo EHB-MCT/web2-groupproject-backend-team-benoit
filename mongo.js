@@ -79,6 +79,7 @@ async function getUserChallenges(userId) {
   const user = await usersCollection.find({
     _id: userId
   }).toArray();
+  console.log(user);
   console.log(user.challenges)
   return user.challenges;
 }
