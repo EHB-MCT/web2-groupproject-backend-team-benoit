@@ -45,6 +45,7 @@ app.post('/challenges', async (req, res, next) => {
         await mongo.connectToDatabase();
         const newChallenge = req.body;
         await mongo.addChallenge(newChallenge);
+        console.log(newChallenge);
         res.status(200).send("Challenge added!")
     } catch (error) {
         console.log(error);
