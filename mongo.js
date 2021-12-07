@@ -52,6 +52,7 @@ async function deleteChallenge(id) {
 
 async function setChallenge(userId, challengeId, state) {
   const updatedChallenges = await getUserChallenges(userId);
+  console.log(updatedChallenges)
   if (!state) {
     updatedChallenges.splice(updatedChallenges.indexOf(challengeId), 1);
   } else {
