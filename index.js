@@ -97,10 +97,22 @@ app.delete("/challenges/:id", async (req, res, next) => {
 
 })
 
-app.post('/setChallenge', async(req,res,next) => {
-    if(!req.body.userId || !req.body.challengeId || !req.body.state){
+app.post('/setChallenge', async (req, res, next) => {
+    if (!req.body.userId || !req.body.challengeId || !req.body.state) {
         res.status(400).send('Bad request: userId, challengeId or status missing')
         return;
+    }
+})
+
+app.get('/users', async (req, res, next) => {
+    try {
+        await mongo.connectToDatabase();
+        let users = await mongo.getUsers();
+        res.status(200).send(users);
+    } catch (error) {
+        console.log(error);
+    } finally {
+        mongo.closeDatabaseConnection();
     }
 })
 

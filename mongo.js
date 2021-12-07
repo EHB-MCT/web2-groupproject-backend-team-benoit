@@ -68,6 +68,12 @@ async function setChallenge(userId, challengeId, state) {
   return result;
 }
 
+async function getUsers() {
+  const users = await usersCollection.find({}).toArray();
+  console.log('Users =>', users);
+  return users;
+}
+
 async function getUserChallenges(userId) {
   const user = await usersCollection.find({
     _id: userId
@@ -81,5 +87,8 @@ export {
   getChallenges,
   addChallenge,
   updateChallenge,
-  deleteChallenge
+  deleteChallenge,
+  setChallenge,
+  getUsers,
+  getUserChallenges
 }
