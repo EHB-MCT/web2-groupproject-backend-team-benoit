@@ -52,10 +52,10 @@ async function deleteChallenge(id) {
 
 async function setChallenge(userId, challengeId, state) {
   const updatedChallenges = await getUserChallenges(userId);
-  console.log(updatedChallenges)
-  if (!state) {
+  console.log(state)
+  if (state == "false") {
     updatedChallenges.splice(updatedChallenges.indexOf(challengeId), 1);
-  } else {
+  } else if (state == "true") {
     updatedChallenges.push(challengeId);
   }
   const result = await usersCollection.updateOne({
@@ -80,8 +80,6 @@ async function getUserChallenges(userId) {
     _id: mdb.ObjectId(userId)
   });
 
-  console.log(user);
-  console.log(user.challenges)
   return user.challenges;
 }
 
