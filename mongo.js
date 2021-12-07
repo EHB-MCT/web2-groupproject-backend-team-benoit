@@ -76,9 +76,10 @@ async function getUsers() {
 }
 
 async function getUserChallenges(userId) {
-  const user = await usersCollection.find({
+  const user = await usersCollection.findOne({
     _id: mdb.ObjectId(userId)
-  }).toArray();
+  });
+
   console.log(user);
   console.log(user.challenges)
   return user.challenges;
